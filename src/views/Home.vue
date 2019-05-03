@@ -5,21 +5,18 @@
       <img :src="loginImg"/>
       <p>后台管理系统</p>
       <div class="form">
-        <Form ref="formCustom" :model="formCustom" :rules="ruleCustom" :label-width="80">
+        <Form ref="formCustom" :model="formCustom" :rules="rules" :label-width="80">
             <FormItem label="账号:" prop="name">
-                <Input type="text" v-model="formCustom.name" number />
+                <Input type="text" v-model="formCustom.name" placeholder="请输入账户"/>
             </FormItem>
             <FormItem label="密码:" prop="passwd">
-                <Input type="password" v-model="formCustom.passwd" />
-            </FormItem>
-            <FormItem label="验证码:" prop="isman">
-                <Input type="password" v-model="formCustom.passwd" />
+              <input type="password" style="position: absolute;left: 30000%;"/>
+              <Input type="password" v-model="formCustom.passwd" placeholder="请输入密码"/>
             </FormItem>
             <FormItem>
               <div style="text-align: right;">
-                <Button size="lage" type="primary" @click="handleSubmit('formCustom')">登 录</Button>
-              </div>  
-              <!-- <Button size="lage" @click="handleReset('formCustom')" style="margin-left: 8px">重置</Button> -->
+                <Button type="primary" @click="handleSubmit('formCustom')">登 录</Button>
+              </div>
             </FormItem>
         </Form>
       </div>
@@ -28,12 +25,18 @@
 </div>
 </template>
 <script>
+import {post} from '../utils/index.js'
 export default {
   data () {
     const validateAge = (rule, value, callback) => {
       if (value === '') {
-        callback(new Error('请输入您的密码'));
-      } else if (value !== this.formCustom.passwd) {
+        callback(new Error('请输入您的账号'));
+      } else {
+        callback();
+      }
+    }
+    const validateAge2 = (rule, value, callback) => {
+      if (value === '') {
         callback(new Error('请输入您的密码'));
       } else {
         callback();
@@ -45,16 +48,13 @@ export default {
         name: '',
         passwd: ''
       },
-      ruleCustom: {
+      rules: {
         name: [
-            { validator: validateAge, trigger: 'blur' }
+            { validator: validateAge, trigger: 'blur' } //  validator: validateAge2,
         ],
         passwd: [
-            { validator: validateAge, trigger: 'blur' }
-        ],
-        isman: [
-            { validator: validateAge, trigger: 'blur' }
-        ],
+            { validator: validateAge2, trigger: 'blur' }
+        ]
       }
     }
   },
@@ -62,7 +62,10 @@ export default {
     handleSubmit (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          this.$Message.success('Success!');
+          this.$Message.success('Success!')
+          post('/getCookie').then(res=> {
+            console.log(res)
+          })
         } else {
           this.$Message.error('Fail!');
         }
