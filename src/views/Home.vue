@@ -62,12 +62,12 @@ export default {
     handleSubmit (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          this.$Message.success('Success!')
+          this.$Message.success('提交成功!')
           post('/getCookie').then(res=> {
             console.log(res)
           })
         } else {
-          this.$Message.error('Fail!');
+          this.$Message.error('您的输入有误!');
         }
       })
     },
