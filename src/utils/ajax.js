@@ -1,6 +1,6 @@
 import axios from "axios";
 // axios.defaults.baseURL = 'http://vue.cc';
-axios.defaults.baseURL = 'http://web.org';
+axios.defaults.baseURL = '//web.org';
 
 axios.interceptors.response.use(function (response) {
     return response;

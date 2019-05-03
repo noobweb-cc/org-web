@@ -10,7 +10,7 @@
                 <Input type="text" v-model="formCustom.name" placeholder="请输入账户"/>
             </FormItem>
             <FormItem label="密码:" prop="passwd">
-              <input type="password" style="position: absolute;left: 30000%;"/>
+              <!-- <input type="password" style="position: absolute;left: 30000%;"/> -->
               <Input type="password" v-model="formCustom.passwd" placeholder="请输入密码"/>
             </FormItem>
             <FormItem>
@@ -25,7 +25,8 @@
 </div>
 </template>
 <script>
-import {post} from '../utils/index.js'
+/* eslint-disable */
+import {post, get} from '../utils/index.js'
 export default {
   data () {
     const validateAge = (rule, value, callback) => {
@@ -62,9 +63,13 @@ export default {
     handleSubmit (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          this.$Message.success('提交成功!')
-          post('/getCookie').then(res=> {
+          get('/login', this.formCustom).then(res=> {
             console.log(res)
+            if (res.data.code === '0') {
+              this.$Message.success('登录成功~');
+            } else {
+              this.$Message.error('账号或者密码有误,请检查!');
+            }
           })
         } else {
           this.$Message.error('您的输入有误!');
