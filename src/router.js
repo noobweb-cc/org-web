@@ -33,11 +33,11 @@ export default new Router({
       name: 'home',
       component: () => import('./views/Home.vue')
     },
-    {
-      path: '/editor',
-      name: 'editor',
-      component: () => import('./views/Editor')
-    },
+    // {
+    //   path: '/editor',
+    //   name: 'editor',
+    //   component: () => import('./views/Editor')
+    // },
     {
       path: '*',
       name: '404',

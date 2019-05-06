@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="art" v-for="(item, index) in arts" :key="index" @click="art(item.id)">
+        <!-- <div class="art" v-for="(item, index) in arts" :key="index" @click="art(item.id)">
             <div class="img">
                 <img :src="item.img"/>
             </div>
@@ -9,7 +9,9 @@
                 <p class="time">{{item.time}}</p>
                 <div class="text">{{textSubstr(item.text)}}</div>
             </div>
-        </div>
+        </div> -->
+        <!-- 上面是版本2.0.0要做的内容 -->
+        <!-- 下面是版本1.0.0要做的内容 -->
     </div>
 </template>
 <script>

@@ -18,7 +18,6 @@
                     </div>
                 </Content>
                 <Footer id="foot"><Icon type="ios-at" />街头社区欢迎您！</Footer>
-            
         </Layout>
     </div>
 </template>
@@ -29,17 +28,17 @@ export default {
             logo: require('../../assets/img/web_logo.png'),
             nav: [
                 {
-                    name: '首页',
+                    name: '社区农作物部分展示',
                     isAct: true,
                     path: '/index'
                 },
+                // {
+                //     name: '农作物',
+                //     isAct: false,
+                //     path: '/nong'
+                // },
                 {
-                    name: '农作',
-                    isAct: false,
-                    path: '/nong'
-                },
-                {
-                    name: '关于我们',
+                    name: '关于街头社区',
                     isAct: false,
                     path: '/about'
                 }
@@ -56,9 +55,10 @@ export default {
         }
     },
     created () {
+        // else if (this.$route.path === "/nong") {
+        //     this.navClick(1);
+        // } 
         if (this.$route.path === "/about") {
-            this.navClick(2);
-        } else if (this.$route.path === "/nong") {
             this.navClick(1);
         } else if (this.$route.path === "/index") {
             this.navClick(0);
@@ -73,7 +73,7 @@ body {
 }
 .centerWidth {
     position: relative;
-    width: 860px;
+    // width: 860px;
     margin: 0 auto;
 }
 #header{
@@ -161,7 +161,7 @@ body {
     width: 100%;
     text-align: center;
     background-color: #f8f8f8;
-    border-top: 2px solid #e4e4e4;
+    border-top: 1px solid #e4e4e4;
     font-size: 16px;
 }
 </style>
